@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     mode: 'css',
     cssLayer: 'base',
     serverBundle: {
-      collections: ['uil', 'mdi'] // <-- merged here
+      collections: ['uil', 'mdi']
     }
   }
 });
