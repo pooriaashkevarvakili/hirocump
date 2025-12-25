@@ -1,14 +1,8 @@
-
 <template>
- 
-    <NuxtLayout>
-        <NuxtPage />
-    </NuxtLayout>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
+</template>
 
-   
-  </template>
-  
-  <style scoped></style>
-  <script setup>
-
-  </script>
+<style scoped></style>
+<script setup></script>

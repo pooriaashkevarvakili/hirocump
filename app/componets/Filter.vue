@@ -1,26 +1,29 @@
 <template>
-<div class='flex flex-col'>
- <div class="w-72 h-40 bg-white p-4 rounded-lg shadow-md flex-shrink-0 space-y-4">
-    <div>
-      <h3 class="font-semibold mb-2">فیلتر و جستجو</h3>
-      <input   @keyup.enter="emitSearch"        v-model="searchQuery" 
- type="text" placeholder="جستجو..." class="input input-bordered w-full text-sm"/>
-      <button   @click="emitSearch"class="btn bg-[#E20054] text-white text-lg w-full mt-2 btn-sm">جستجو</button>
+  <div class="flex flex-col">
+    <div class="w-72 h-40 bg-white p-4 rounded-lg shadow-md flex-shrink-0 space-y-4">
+      <div>
+        <h3 class="font-semibold mb-2">فیلتر و جستجو</h3>
+        <input
+          @keyup.enter="emitSearch"
+          v-model="searchQuery"
+          type="text"
+          placeholder="جستجو..."
+          class="input input-bordered w-full text-sm"
+        />
+        <button
+          @click="emitSearch"
+          class="btn bg-[#E20054] text-white text-lg w-full mt-2 btn-sm"
+        >
+          جستجو
+        </button>
+      </div>
     </div>
-
-
-
- 
-
-  </div>
-<div class="w-72 mt-5 bg-white p-4 rounded-lg shadow-md flex-shrink-0 space-y-4">
-  <div class="collapse collapse-arrow">
-    <input type="checkbox" /> 
-    <div class="collapse-title font-medium text-md">
-      مرتب‌سازی
-    </div>
-    <div class="collapse-content space-y-2">
-    <label class="flex items-center gap-2 cursor-pointer">
+    <div class="w-72 mt-5 bg-white p-4 rounded-lg shadow-md flex-shrink-0 space-y-4">
+      <div class="collapse collapse-arrow">
+        <input type="checkbox" />
+        <div class="collapse-title font-medium text-md">مرتب‌سازی</div>
+        <div class="collapse-content space-y-2">
+          <label class="flex items-center gap-2 cursor-pointer">
             <input
               type="radio"
               name="sort"
@@ -30,7 +33,7 @@
             />
             قیمت: زیاد به کم
           </label>
-    <label class="flex items-center gap-2 cursor-pointer">
+          <label class="flex items-center gap-2 cursor-pointer">
             <input
               type="radio"
               name="sort"
@@ -40,7 +43,7 @@
             />
             امتیاز: کم به زیاد
           </label>
-    <label class="flex items-center gap-2 cursor-pointer">
+          <label class="flex items-center gap-2 cursor-pointer">
             <input
               type="radio"
               name="sort"
@@ -50,14 +53,10 @@
             />
             امتیاز: زیاد به کم
           </label>
+        </div>
+      </div>
     </div>
-  </div>
-
-
-
-
-</div>
-<div class="w-72 mt-5 bg-white p-4 rounded-lg shadow-md">
+    <div class="w-72 mt-5 bg-white p-4 rounded-lg shadow-md">
       <div class="collapse collapse-arrow">
         <input type="checkbox" />
         <div class="collapse-title font-medium">دسته‌بندی</div>
@@ -98,44 +97,42 @@
         </div>
       </div>
     </div>
-</div>
-
+  </div>
 </template>
 
-
 <script setup>
-import { ref, watch } from 'vue'
-import { useProducts } from '~/composables/useProducts'
+import { ref, watch } from "vue";
+import { useProducts } from "~/composables/useProducts";
 
-const { categoryCounts, totalProductsCount } = useProducts()
+const { categoryCounts, totalProductsCount } = useProducts();
 
-const searchQuery = ref('')
-const selectedSort = ref('')
-const selectedCategory = ref('')
+const searchQuery = ref("");
+const selectedSort = ref("");
+const selectedCategory = ref("");
 
-const categories = ['electronics', 'jewelery', "men's clothing", "women's clothing"]
+const categories = ["electronics", "jewelery", "men's clothing", "women's clothing"];
 
 const formatCategory = (cat) => {
   const map = {
     "men's clothing": "پوشاک مردانه",
     "women's clothing": "پوشاک زنانه",
-    "jewelery": "جواهرات",
-    "electronics": "الکترونیک"
-  }
-  return map[cat] || cat
-}
+    jewelery: "جواهرات",
+    electronics: "الکترونیک",
+  };
+  return map[cat] || cat;
+};
 
-const emit = defineEmits(['search', 'sort', 'category'])
+const emit = defineEmits(["search", "sort", "category"]);
 
 const emitSearch = () => {
-  emit('search', searchQuery.value.trim())
-}
+  emit("search", searchQuery.value.trim());
+};
 
 watch(selectedSort, (newVal) => {
-  emit('sort', newVal || null)
-})
+  emit("sort", newVal || null);
+});
 
 watch(selectedCategory, (newVal) => {
-  emit('category', newVal || null)
-})
+  emit("category", newVal || null);
+});
 </script>
