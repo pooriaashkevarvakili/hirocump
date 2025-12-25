@@ -66,12 +66,10 @@
 
   </aside>
 <nav class="flex flex-col md:flex-col md:justify-between items-center gap-4 p-4 ">
-  <!-- Text section -->
   <div dir="rtl" class="text-sm">
     تمامی حقوق مادی و معنوی این وبسایت متعلق به می‌باشد و هر گونه کپی برداری پیگرد قانونی دارد.
   </div>
 
-  <!-- Icons section -->
   <div class="flex gap-4">
     <a>
       <Icon size="23px" name="ic:sharp-telegram" />
