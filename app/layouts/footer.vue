@@ -1,39 +1,49 @@
 <template>
-  <footer class="footer sm:footer-horizontal bg-base-300 text-base-content p-10 mt-20">
-    <nav>
-      <h6 class="footer-title">شب‍‍که های اجتماعی</h6>
-      <a class="link link-hover flex items-center gap-2">
-        <span>تلگرام</span>
-        <Icon size="23px" name="ic:sharp-telegram" />
-      </a>
-      <a class="link link-hover flex items-center gap-2">
-        <span>اینستاگرام</span>
-        <Icon size="23px" name="ri:instagram-fill" />
-      </a>
-      <a class="link link-hover flex items-center gap-2">
-        <span>لینکدین</span>
-        <Icon size="23px" name="mingcute:linkedin-fill" />
-      </a>
-    </nav>
-    <nav>
-      <h6 class="footer-title">راهنمای سایت</h6>
-      <a class="link link-hover">قوانین ومقررات</a>
-      <a class="link link-hover">دریافت مشاوره</a>
-      <a class="link link-hover">انتقادات وپیشنهادات</a>
-    </nav>
-    <nav>
-      <h6 class="footer-title">دسترسی سریع</h6>
-      <a class="link link-hover">دربار ه ما</a>
-      <a class="link link-hover">بلاگ</a>
-      <a class="link link-hover">تماس با ما</a>
-      <a class="link link-hover">خدمات پس از فروش</a>
-    </nav>
-    <nav>
-      <h6 class="footer-title"></h6>
-      <div class="grid grid-flow-col gap-4">
-        هفت روز هفته از ۸ صبح تا ۱۲ شب پاسخگو هستیم
-      </div>
-    </nav>
+<footer class="footer bg-base-300 text-base-content p-10 mt-20" dir="rtl">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 max-w-7xl mx-auto">
+     <nav class="flex flex-col gap-4 text-right">
+        <h6 class="footer-title opacity-0 pointer-events-none">پشتیبانی</h6>
+        <p class="text-lg leading-relaxed">
+          هفت روز هفته از ۸ صبح تا ۱۲ شب پاسخگو هستیم
+        </p>
+      </nav>
+      <!-- دسترسی سریع (راست‌ترین ستون) -->
+      <nav class="flex flex-col gap-4 text-right">
+        <h6 class="footer-title">دسترسی سریع</h6>
+        <a class="link link-hover text-[#E20054]">درباره ما</a>
+        <a class="link link-hover">بلاگ</a>
+        <a class="link link-hover">تماس با ما</a>
+        <a class="link link-hover">خدمات پس از فروش</a>
+      </nav>
+
+      <!-- راهنمای سایت -->
+      <nav class="flex flex-col gap-4 text-right">
+        <h6 class="footer-title">راهنمای سایت</h6>
+        <a class="link link-hover">قوانین و مقررات</a>
+        <a class="link link-hover">دریافت مشاوره</a>
+        <a class="link link-hover">انتقادات و پیشنهادات</a>
+      </nav>
+
+      <!-- شبکه‌های اجتماعی -->
+      <nav class="flex flex-col gap-4 text-right">
+        <h6 class="footer-title">شبکه‌های اجتماعی</h6>
+        <a class="link link-hover flex items-center gap-2">
+          <Icon size="23px" name="ic:sharp-telegram" />
+          <span>تلگرام</span>
+        </a>
+        <a class="link link-hover flex items-center gap-2">
+          <Icon size="23px" name="ri:instagram-fill" />
+          <span>اینستاگرام</span>
+        </a>
+        <a class="link link-hover flex items-center gap-2">
+          <Icon size="23px" name="mingcute:linkedin-fill" />
+          <span>لینکدین</span>
+        </a>
+      </nav>
+
+      <!-- پشتیبانی -->
+     
+    </div>
   </footer>
   <footer class="footer sm:footer-horizontal bg-white text-black items-center p-4">
     <aside class="grid-flow-col items-center">
@@ -124,3 +134,15 @@
     </nav>
   </footer>
 </template>
+<style scoped>
+/* اطمینان کامل از راست‌چین بودن */
+footer {
+  direction: rtl;
+  text-align: right;
+}
+
+/* رنگ قرمز برای "دریاره ما" مثل تصویر */
+a.text-[#E20054] {
+  color: #E20054;
+}
+</style>
