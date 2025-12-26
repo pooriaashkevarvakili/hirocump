@@ -7,47 +7,37 @@
         <div class="flex items-center justify-between flex-wrap gap-4">
           <span class="font-bold">فیلترهای اعمال شده:</span>
 
-        <div class="flex flex-wrap items-center gap-4">
-  <div v-if="appliedFilters.length > 0" class="flex flex-wrap gap-2">
-    <div
-      v-for="filter in appliedFilters"
-      :key="filter"
-      class="red-secondary inline-flex items-center gap-1 px-3 h-[32px] rounded-md max-w-full"
-    >
-      <Icon size="20px" name="ic:baseline-search" />
+          <div class="flex flex-wrap items-center gap-4">
+            <div v-if="appliedFilters.length > 0" class="flex flex-wrap gap-2">
+              <div
+                v-for="filter in appliedFilters"
+                :key="filter"
+                class="red-secondary inline-flex items-center gap-1 px-3 h-[32px] rounded-md max-w-full"
+              >
+                <Icon size="20px" name="ic:baseline-search" />
 
-      <span class="truncate max-w-[200px]">
-        {{ filter }}
-      </span>
+                <span class="truncate max-w-[200px]">
+                  {{ filter }}
+                </span>
 
-      <button
-        @click="removeFilter(filter)"
-        class="text-red-500 font-bold"
-      >
-        <Icon size="20px" name="mingcute:close-medium-fill" />
-      </button>
-    </div>
-  </div>
+                <button @click="removeFilter(filter)" class="text-red-500 font-bold">
+                  <Icon size="20px" name="mingcute:close-medium-fill" />
+                </button>
+              </div>
+            </div>
 
-  <button
-    v-if="appliedFilters.length > 0"
-    @click="clearFilters"
-    class=" red-secondary w-[110px] flex items-center gap-2 h-[32px] rounded-lg btn-outline text-black shrink-0"
-  >
-  <span class='relative right-[10px]'>
-      حذف همه
-
-  </span>
-     <button
-        @click="removeFilter(filter)"
-        class="text-red-500 font-bold relative top-[4px]"
-      >
-        <Icon size="20px" name="mingcute:close-medium-fill" />
-      </button>
-  </button>
-</div>
-
-          
+            <button
+              v-if="appliedFilters.length > 0"
+              @click="clearFilters"
+              class="red-secondary w-[110px] flex items-center gap-2 h-[32px] rounded-lg btn-outline text-black shrink-0"
+            >
+              <span class="relative right-[10px]">
+                <span>
+                  {{ resultText }}
+                </span>
+              </span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -94,6 +84,7 @@ const {
   appliedFilters,
   removeFilter,
   clearFilters,
+  resultText,
 } = useProducts();
 let currentCategory = null;
 let currentSortType = null;
@@ -113,8 +104,7 @@ const handleCategory = (category) => {
   currentCategory = category;
 
   const currentSearch =
-    appliedFilters.value.find((f) => f.startsWith(""))?.replace("", "") ||
-    "";
+    appliedFilters.value.find((f) => f.startsWith(""))?.replace("", "") || "";
 
   fetchProducts(currentSearch, currentSortType, category);
 };

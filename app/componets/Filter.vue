@@ -75,7 +75,6 @@
         <input type="checkbox" />
         <div class="collapse-title font-medium">دسته‌بندی</div>
         <div class="collapse-content space-y-3 pt-4">
-          <!-- هر دسته با تعداد -->
           <label
             v-for="cat in categories"
             :key="cat"
@@ -94,7 +93,6 @@
             <span class="text-sm text-gray-500">({{ categoryCounts[cat] || 0 }})</span>
           </label>
 
-          <!-- گزینه همه محصولات -->
           <label class="flex items-center justify-between cursor-pointer text-gray-500">
             <div class="flex items-center gap-2">
               <input

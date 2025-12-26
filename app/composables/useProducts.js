@@ -1,4 +1,5 @@
-import { ref } from 'vue'
+
+import { ref, computed } from 'vue'
 
 export const useProducts = () => {
   const products = ref([])
@@ -29,7 +30,6 @@ export const useProducts = () => {
     return categoryMap[enName] || enName
   }
 
- 
   const categoryCounts = {
     "men's clothing": 5,
     "women's clothing": 6,
@@ -48,26 +48,28 @@ export const useProducts = () => {
       if (!res.ok) throw new Error(`API error: ${res.status}`)
       let data = await res.json()
 
+      // اعمال فیلتر دسته‌بندی
       if (category && categoryMap[category]) {
         data = data.filter(p => p.category === category)
-
         appliedFilters.value = appliedFilters.value.filter(f => !f.startsWith('دسته:'))
         appliedFilters.value.push(`دسته: ${getCategoryFa(category)}`)
       } else {
         appliedFilters.value = appliedFilters.value.filter(f => !f.startsWith('دسته:'))
       }
 
-  
+      // اعمال جستجو
       if (searchQuery && searchQuery.trim() !== '') {
         const query = searchQuery.trim().toLowerCase()
         data = data.filter(p => p.title.toLowerCase().includes(query))
 
+        // مهم: پیشوند یکسان برای جستجو
         appliedFilters.value = appliedFilters.value.filter(f => !f.startsWith('جستجو:'))
-        appliedFilters.value.push(` ${searchQuery.trim()}`)
+        appliedFilters.value.push(`جستجو: ${searchQuery.trim()}`)
       } else {
         appliedFilters.value = appliedFilters.value.filter(f => !f.startsWith('جستجو:'))
       }
 
+      // اعمال مرتب‌سازی
       if (sortType && sortOptions[sortType]) {
         const { key, order } = sortOptions[sortType]
         const keys = key.split('.')
@@ -128,18 +130,12 @@ export const useProducts = () => {
     const categoryFilter = appliedFilters.value.find(f => f.startsWith('دسته:'))
 
     const currentSearch = searchFilter ? searchFilter.replace('جستجو: ', '') : ''
-    
-    let currentSortType = null
-    if (sortFilter) {
-      const label = sortFilter.replace('مرتب: ', '')
-      currentSortType = Object.keys(sortOptions).find(key => sortOptions[key].label === label) || null
-    }
-
-    let currentCategory = null
-    if (categoryFilter) {
-      const faName = categoryFilter.replace('دسته: ', '')
-      currentCategory = getCategoryEn(faName)
-    }
+    const currentSortType = sortFilter
+      ? Object.keys(sortOptions).find(key => sortOptions[key].label === sortFilter.replace('مرتب: ', ''))
+      : null
+    const currentCategory = categoryFilter
+      ? getCategoryEn(categoryFilter.replace('دسته: ', ''))
+      : null
 
     fetchProducts(currentSearch, currentSortType, currentCategory)
   }
@@ -148,6 +144,17 @@ export const useProducts = () => {
     appliedFilters.value = []
     fetchProducts('')
   }
+
+const resultText = computed(() => {
+  const count = products.value.length
+
+  if (count === 0) {
+    return 'محصولی یافت نشد'
+  }
+
+  return `تعداد: ${count}`
+})
+
   return {
     products,
     product,
@@ -158,8 +165,9 @@ export const useProducts = () => {
     fetchProductById,
     removeFilter,
     clearFilters,
+    resultText,              
     categoryCounts,
     totalProductsCount,
-    categoryMap 
+    categoryMap
   }
 }
