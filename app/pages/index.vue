@@ -8,7 +8,6 @@
           <span class="font-bold">فیلترهای اعمال شده:</span>
 
         <div class="flex flex-wrap items-center gap-4">
-  <!-- فیلترها -->
   <div v-if="appliedFilters.length > 0" class="flex flex-wrap gap-2">
     <div
       v-for="filter in appliedFilters"
@@ -30,11 +29,10 @@
     </div>
   </div>
 
-  <!-- حذف همه -->
   <button
     v-if="appliedFilters.length > 0"
     @click="clearFilters"
-    class=" red-secondary w-[94px] flex items-center gap-2 h-[32px] rounded-lg btn-outline text-black shrink-0"
+    class=" red-secondary w-[110px] flex items-center gap-2 h-[32px] rounded-lg btn-outline text-black shrink-0"
   >
   <span class='relative right-[10px]'>
       حذف همه
