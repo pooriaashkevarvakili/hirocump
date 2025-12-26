@@ -149,7 +149,7 @@ const resultText = computed(() => {
   const count = products.value.length
 
   if (count === 0) {
-    return 'محصولی یافت نشد'
+    return 'ندارید'
   }
 
   return `تعداد: ${count}`
