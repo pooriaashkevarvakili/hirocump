@@ -48,7 +48,6 @@ export const useProducts = () => {
       if (!res.ok) throw new Error(`API error: ${res.status}`)
       let data = await res.json()
 
-      // اعمال فیلتر دسته‌بندی
       if (category && categoryMap[category]) {
         data = data.filter(p => p.category === category)
         appliedFilters.value = appliedFilters.value.filter(f => !f.startsWith('دسته:'))
@@ -57,19 +56,16 @@ export const useProducts = () => {
         appliedFilters.value = appliedFilters.value.filter(f => !f.startsWith('دسته:'))
       }
 
-      // اعمال جستجو
       if (searchQuery && searchQuery.trim() !== '') {
         const query = searchQuery.trim().toLowerCase()
         data = data.filter(p => p.title.toLowerCase().includes(query))
 
-        // مهم: پیشوند یکسان برای جستجو
         appliedFilters.value = appliedFilters.value.filter(f => !f.startsWith('جستجو:'))
         appliedFilters.value.push(`جستجو: ${searchQuery.trim()}`)
       } else {
         appliedFilters.value = appliedFilters.value.filter(f => !f.startsWith('جستجو:'))
       }
 
-      // اعمال مرتب‌سازی
       if (sortType && sortOptions[sortType]) {
         const { key, order } = sortOptions[sortType]
         const keys = key.split('.')
