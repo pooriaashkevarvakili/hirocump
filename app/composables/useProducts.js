@@ -63,7 +63,7 @@ export const useProducts = () => {
         data = data.filter(p => p.title.toLowerCase().includes(query))
 
         appliedFilters.value = appliedFilters.value.filter(f => !f.startsWith('جستجو:'))
-        appliedFilters.value.push(`جستجو: ${searchQuery.trim()}`)
+        appliedFilters.value.push(` ${searchQuery.trim()}`)
       } else {
         appliedFilters.value = appliedFilters.value.filter(f => !f.startsWith('جستجو:'))
       }

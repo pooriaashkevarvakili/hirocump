@@ -1,2 +1,41 @@
 @import "tailwindcss";
 @plugin "daisyui";
+.bg-red{
+    background-color: #E20054;
+}
+.color-red{
+    color:#E20054
+}
+.border-red-primary{
+    border: 1px solid #E20054;
+}
+.red-secondary{
+    background-color:#FCE5EE;
+;
+}
+@font-face {
+  font-family: "YekanBakh";
+  src: url("../assets/YekanBakh-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "YekanBakh";
+  src: url("../assets/YekanBakh-Thin.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "YekanBakh";
+  src: url("../assets/YekanBakh-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+html,
+body {
+  font-family: "YekanBakh";
+}

@@ -1,4 +1,5 @@
 <template>
+<div class='2xl:block xl:block lg:block hidden'>
   <div class="flex flex-col">
     <div class="w-72 h-40 bg-white p-4 rounded-lg shadow-md flex-shrink-0 space-y-4">
       <div>
@@ -8,12 +9,25 @@
           v-model="searchQuery"
           type="text"
           placeholder="جستجو..."
-          class="input input-bordered w-full text-sm"
+          class="input outline-none pr-[45px] hover:border :placeholder-right-[80px] relative hover:border-solid hover:border-[#E20054]  w-full text-sm"
         />
+        <Icon     class="absolute right-12 top-[160px] -translate-y-1/2 color-red pointer-events-none"
+ size="25px" name="ic:round-search" />
+ <button
+          v-if="searchQuery"
+          @click="clearSearch"
+          class="absolute right-[260px] top-[163px]  -translate-y-1/2 text-[#647E9A] hover:text-red-600 focus:outline-none"
+        >
+          <Icon size="25px" name="mingcute:close-medium-fill" />
+        </button>
+   <div
+    class="absolute right-[80px] top-[160px] -translate-y-1/2 h-6 border-r border-[#D1DBE8]"
+  ></div>
         <button
           @click="emitSearch"
-          class="btn bg-[#E20054] text-white text-lg w-full mt-2 btn-sm"
+          class="btn bg-red text-white rounded-xl h-[40px] text-lg w-full mt-2 btn-sm"
         >
+         
           جستجو
         </button>
       </div>
@@ -98,13 +112,14 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script setup>
 import { ref, watch } from "vue";
 import { useProducts } from "~/composables/useProducts";
 
-const { categoryCounts, totalProductsCount } = useProducts();
+const { categoryCounts, totalProductsCount,removeFilter } = useProducts();
 
 const searchQuery = ref("");
 const selectedSort = ref("");
@@ -131,7 +146,10 @@ const emitSearch = () => {
 watch(selectedSort, (newVal) => {
   emit("sort", newVal || null);
 });
-
+const clearSearch = () => {
+  searchQuery.value = "";
+  emit("search", ""); // یا null اگر در کامپوننت والد با "" چک می‌کنی
+};
 watch(selectedCategory, (newVal) => {
   emit("category", newVal || null);
 });

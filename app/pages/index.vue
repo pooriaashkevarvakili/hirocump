@@ -7,26 +7,49 @@
         <div class="flex items-center justify-between flex-wrap gap-4">
           <span class="font-bold">فیلترهای اعمال شده:</span>
 
-          <div v-if="appliedFilters.length > 0" class="flex flex-wrap gap-2">
-            <div
-              v-for="filter in appliedFilters"
-              :key="filter"
-              class="badge badge-lg badge-primary gap-1"
-            >
-              {{ filter }}
-              <button @click="removeFilter(filter)" class="text-red-500 font-bold">
-                ×
-              </button>
-            </div>
-          </div>
+        <div class="flex flex-wrap items-center gap-4">
+  <!-- فیلترها -->
+  <div v-if="appliedFilters.length > 0" class="flex flex-wrap gap-2">
+    <div
+      v-for="filter in appliedFilters"
+      :key="filter"
+      class="red-secondary inline-flex items-center gap-1 px-3 h-[32px] rounded-md max-w-full"
+    >
+      <Icon size="20px" name="ic:baseline-search" />
 
-          <button
-            v-if="appliedFilters.length > 0"
-            @click="clearFilters"
-            class="btn btn-sm btn-outline btn-error"
-          >
-            حذف همه
-          </button>
+      <span class="truncate max-w-[200px]">
+        {{ filter }}
+      </span>
+
+      <button
+        @click="removeFilter(filter)"
+        class="text-red-500 font-bold"
+      >
+        <Icon size="20px" name="mingcute:close-medium-fill" />
+      </button>
+    </div>
+  </div>
+
+  <!-- حذف همه -->
+  <button
+    v-if="appliedFilters.length > 0"
+    @click="clearFilters"
+    class=" red-secondary w-[94px] flex items-center gap-2 h-[32px] rounded-lg btn-outline text-black shrink-0"
+  >
+  <span class='relative right-[10px]'>
+      حذف همه
+
+  </span>
+     <button
+        @click="removeFilter(filter)"
+        class="text-red-500 font-bold relative top-[4px]"
+      >
+        <Icon size="20px" name="mingcute:close-medium-fill" />
+      </button>
+  </button>
+</div>
+
+          
         </div>
       </div>
 
@@ -36,21 +59,24 @@
           :key="product.id"
           class="card h-[400px] bg-white shadow-md rounded-lg overflow-hidden"
         >
-          <figure class="h-48">
+          <figure class="h-48 flex items-start justify-start">
             <img
               :src="product.image"
               :alt="product.title"
-              class="w-full h-full object-contain"
+              class="w-full h-full object-contain object-right-top p-10"
             />
           </figure>
           <div class="card-body">
-            <h2 class="card-title text-sm md:text-base">{{ product.title }}</h2>
-            <div class="card-actions justify-start mt-2">
+            <h2 class="card-title text-sm md:text-base flex items-start justify-start">
+              {{ product.title }}
+            </h2>
+            <div class="card-actions flex items-start justify-start mt-2">
               <NuxtLink
                 :to="`/products/${product.id}`"
-                class="btn btn-outline btn-sm text-pink-500"
+                class="color-red btn-sm flex gap-2"
               >
                 مشاهده جزئیات
+                <Icon class="color-red" size="25px" name="lsicon:left-filled" />
               </NuxtLink>
             </div>
           </div>
@@ -89,7 +115,7 @@ const handleCategory = (category) => {
   currentCategory = category;
 
   const currentSearch =
-    appliedFilters.value.find((f) => f.startsWith("جستجو:"))?.replace("جستجو: ", "") ||
+    appliedFilters.value.find((f) => f.startsWith(""))?.replace("", "") ||
     "";
 
   fetchProducts(currentSearch, currentSortType, category);
