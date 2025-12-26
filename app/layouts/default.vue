@@ -23,6 +23,7 @@
     </div>
     <div class="navbar-center hidden lg:flex">
       <ul class="menu menu-horizontal px-1">
+       
         <li>
           <div class="flex gap-2">
             <span>تماس با ما</span>
@@ -74,6 +75,14 @@
             <Icon size="23px" name="solar:cup-broken" />
           </div>
         </li>
+          <li class='flex items-center'>
+         <NuxtLink href='/'>
+            <div class="flex gap-2 justify-end items-center">
+              <span>خانه</span>
+              <Icon size="23px" name="material-symbols-light:home-outline" />
+            </div>
+          </NuxtLink>
+          </li>
       </ul>
     </div>
     <div class="navbar-end ">
@@ -86,7 +95,14 @@
         <ul
           tabindex="-1"
           class="menu menu-sm dropdown-content bg-base-100 absolute right-[10px] rounded-box z-1 mt-3 w-52  p-2 shadow"
-        >
+        > <li>
+          <NuxtLink class="flex gap-2 justify-end items-center" href='/'>
+            <div class='flex gap-2 items-center'>
+              <span>خانه</span>
+               <Icon size="23px" name="material-symbols-light:home-outline" />
+            </div>
+          </NuxtLink>
+          </li>
           <li>
             <div class="flex gap-2 justify-end items-center">
               <span>تماس با ما</span>
