@@ -146,7 +146,7 @@ watch(selectedSort, (newVal) => {
 });
 const clearSearch = () => {
   searchQuery.value = "";
-  emit("search", ""); // یا null اگر در کامپوننت والد با "" چک می‌کنی
+  emit("search", "");  
 };
 watch(selectedCategory, (newVal) => {
   emit("category", newVal || null);
