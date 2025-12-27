@@ -1,9 +1,15 @@
 <template>
   <div dir="rtl" class="p-6 bg-gray-50 min-h-screen flex gap-6">
-    <Filter @search="handleSearch" @sort="handleSort" @category="handleCategory" />
+    <Filter
+      @search="handleSearch"
+      @sort="handleSort"
+      @category="handleCategory"
+    />
 
     <div class="flex-1 space-y-4">
-      <div class="bg-white text-black p-4 rounded-lg shadow-md">
+      <div
+        class="bg-white text-black p-4 2xl:block xl:block lg:block hidden rounded-lg shadow-md"
+      >
         <div class="flex items-center justify-between flex-wrap gap-4">
           <span class="font-bold">فیلترهای اعمال شده:</span>
 
@@ -20,7 +26,10 @@
                   {{ filter }}
                 </span>
 
-                <button @click="removeFilter(filter)" class="text-red-500 font-bold">
+                <button
+                  @click="removeFilter(filter)"
+                  class="text-red-500 font-bold"
+                >
                   <Icon size="20px" name="mingcute:close-medium-fill" />
                 </button>
               </div>
@@ -55,7 +64,9 @@
             />
           </figure>
           <div class="card-body">
-            <h2 class="card-title text-sm md:text-base flex items-start justify-start">
+            <h2
+              class="card-title text-sm md:text-base flex items-start justify-start"
+            >
               {{ product.title }}
             </h2>
             <div class="card-actions flex items-start justify-start mt-2">
@@ -95,8 +106,9 @@ const handleSearch = (query) => {
 const handleSort = (sortType) => {
   currentSortType = sortType;
   const currentSearch =
-    appliedFilters.value.find((f) => f.startsWith("جستجو:"))?.replace("جستجو: ", "") ||
-    "";
+    appliedFilters.value
+      .find((f) => f.startsWith("جستجو:"))
+      ?.replace("جستجو: ", "") || "";
 
   fetchProducts(currentSearch, sortType);
 };
